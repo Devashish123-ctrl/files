@@ -28,7 +28,7 @@
                 button{
                     display: block;
                     font-size: 30px;
-                    background-color: #4CAF50;
+                    background-color:   #4CAF50 ;
                    color: white;
                    padding: 10px 20px;
                 border: none;
@@ -72,7 +72,7 @@
     
             <input type="text" placeholder="+90" id="mobile-number" name="mobile-number">
             <input type="hidden" id ="session" name="SessionID" value={{SessionID}} />
-            <button>Continue</button>
+            <button id="btn">Continue</button>
           </form>
           <p id="red">{{message}} </p>
           <p class="terms">Entertainment is a subscription service that will automatically renew for 1 USD/ 7 Day(s). You can unsubscribe from the service at
@@ -81,6 +81,7 @@
 
        <script>
         function  myFunction(event){
+        document.getElementById("btn").style.backgroundColor ="#687869"
         event.preventDefault();
   const myform = event.target;
   const data_send = new FormData(myform);
@@ -93,6 +94,7 @@
     const response  = JSON.parse(xhr.response)
     console.log(response["message"])
     document.getElementById("red").innerHTML =response["message"]
+    document.getElementById("btn").style.backgroundColor ="#4CAF50"
 
   }
   xhr.send(data_send)

@@ -1,0 +1,105 @@
+<html>
+    <body>
+        <head>
+
+            <style>
+                .container{
+                    max-width: 400px;
+                    height: 100%;
+                    margin: auto; 
+                    font-family: Arial, Helvetica, sans-serif;
+                    border: 1px solid rgb(225, 224, 224);
+                }
+                #img1{
+                    display: block;
+                    height: 50px;
+
+                }
+                #kam{
+                   text-align: center;          
+                   font-size: large;   
+                }
+                #img2{
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                }
+                button{
+                    display: block;
+                    font-size: 30px;
+                    background-color: #4CAF50;
+                   color: white;
+                   padding: 10px 20px;
+                border: none;
+           border-radius: 4px;
+            cursor: pointer;
+              margin-left: auto;
+              margin-right: auto;
+                }
+                form{
+                   
+                    margin-top: 20px;  
+                }
+                input{
+                    display: block;
+                    margin-bottom: 10px;
+                    height: 40px;
+                    width: 80%;
+                    font-size: 30px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                #red{
+                    color: red;
+                    text-align: center;
+                }
+                .terms{
+                       text-align: center;
+                }
+
+ 
+            </style>
+        </head>
+       <div class="container">
+        <img id  ="img1" src="https://d33t2t3w9vkbcw.cloudfront.net/mobile.png"/>
+        <figcaption>steps 1/2</figcaption>
+        <div class="content">
+            <img id  ="img2" src="https://d33t2t3w9vkbcw.cloudfront.net/mobile.png"/>
+        <figcaption ID="kam">  Enter your mobile number </figcaption>
+        </div>
+        <form onsubmit="myFunction(event)" method="post">
+    
+            <input type="text" placeholder="+90" id="mobile-number" name="mobile-number">
+            <input type="hidden" id ="session" name="SessionID" value={{SessionID}} />
+            <button>Continue</button>
+          </form>
+          <p id="red">{{message}} </p>
+          <p class="terms">Entertainment is a subscription service that will automatically renew for 1 USD/ 7 Day(s). You can unsubscribe from the service at
+        </div>
+       </div>
+
+       <script>
+        function  myFunction(event){
+        event.preventDefault();
+  const myform = event.target;
+  const data_send = new FormData(myform);
+  console.log(data_send)
+  const xhr = new XMLHttpRequest()
+  const method= "POST"
+  const url = 'action/'
+  xhr.open(method,url)
+  xhr.onload=()=>{
+    const response  = JSON.parse(xhr.response)
+    console.log(response["message"])
+    document.getElementById("red").innerHTML =response["message"]
+
+  }
+  xhr.send(data_send)
+  
+
+        }
+
+       </script>
+    </body>
+</html>
